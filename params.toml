@@ -1,0 +1,72 @@
+[simulation]
+min_pit_stops = 1
+max_pit_stops = 4
+p_grid = 5
+# circuit parameters
+tot_no_laps = 70
+# car parameters
+t_base = 80
+t_lap_sens_mass = 0.03
+t_pitdrive_inlap = 3
+t_pitdrive_outlap = 16
+t_pit_tirechange = 3
+cold_tire_pen = 1.0
+pits_aft_finishline = true
+t_loss_firstlap = 10
+t_loss_pergridpos = 2
+m_fuel_init= 110
+b_fuel_perlap = 1.557
+
+tires = [
+    ["soft", 3],
+    ["soft", 3],
+    ["soft", 5],
+    ["medium", 0],
+    ["medium", 0],
+    ["hard", 0],
+    ["hard", 2]
+]
+
+
+# tire parameters at Hungary GP according to C. Beaume
+[tires.soft]
+k_1_lin = 0.09
+k_0 = 0.0
+
+[tires.medium]
+k_1_lin = 0.05
+k_0 = 0.5
+
+[tires.hard]
+k_1_lin = 0.02
+k_0 = 1.2
+
+
+[reference]
+# strategy on race day according to Fast F1
+strategy = [
+    [1, "medium", 0],
+    [22, "medium", 0],
+    [40, "hard", 0],
+    [55, "soft", 3],
+]
+
+#[strategies]
+# example strategies
+#example = [
+#    [
+#        [0, "soft", 5],
+#        [20, "soft", 10],
+#        [40, "soft", 5],
+#        [55, "soft", 0]
+#    ],
+#    [
+#        [0, "medium", 5],
+#        [5, "soft", 10],
+#        [60, "hard", 5]
+#    ],
+#    [
+#        [0, "hard", 2],
+#        [35, "medium", 5]
+#    ]
+#]
