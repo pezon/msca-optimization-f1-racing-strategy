@@ -28,18 +28,29 @@ tires = [
 ]
 
 
-# tire parameters at Hungary GP according to C. Beaume
 [tires.soft]
+# tire parameters at Hungary GP according to C. Beaume:
 k_1_lin = 0.09
 k_0 = 0.0
+# empirically found tire parameters at Hungary GP:
+# k_1_lin = 0.0404
+# k_0 = 0.6293
 
 [tires.medium]
+# tire parameters at Hungary GP according to C. Beaume:
 k_1_lin = 0.05
 k_0 = 0.5
+# empirically found tire parameters at Hungary GP:
+# k_1_lin = 0.0752
+# k_0 = 0.3592
 
 [tires.hard]
+# tire parameters at Hungary GP according to C. Beaume:
 k_1_lin = 0.02
 k_0 = 1.2
+# empirically found tire parameters at Hungary GP:
+# k_1_lin = 0.0351
+# k_0 = 1.8991
 
 
 [reference]
