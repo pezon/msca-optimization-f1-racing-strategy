@@ -51,6 +51,16 @@ function optimize_strategy(;
     @objective(model, Min, 0.5 * dot(x, P * x) + dot(q, x))
     @constraint(model, G * x .<= h)
     @constraint(model, A * x .== b)
+
+    # More than one lap...
+    @constraint(model, x .>= 2)
+    # soft tires don't last very long
+    for t in 1:length(tires)
+        print(tires[t])
+        if lowercase(tires[t][1]) == "soft"
+            @constraint(model, x[t] <= 30)
+        end
+    end
     
     @time begin
         status = optimize!(model)
@@ -59,9 +69,10 @@ function optimize_strategy(;
     println("x = ", JuMP.value.(x))
     stints = JuMP.value.(x)
     stint_starts = Int.(cumsum(stints) .- stints)
+    stint_ends = Int.(stint_starts .+ stints)
     strategy = [
-        (stint_start, tire[1], tire[2])
-        for (stint_start, tire) in zip(stint_starts, tires)
+        (stint_start, stint_end, tire[1], tire[2])
+        for (stint_start, stint_end, tire) in zip(stint_starts, stint_ends, tires)
     ]
     return strategy
 end

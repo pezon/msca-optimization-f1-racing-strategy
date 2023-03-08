@@ -52,7 +52,8 @@ function simulate(;
             t_loss_pergridpos=t_loss_pergridpos, 
             strategy=strategy, 
             m_fuel_init=m_fuel_init, 
-            b_fuel_perlap=b_fuel_perlap
+            b_fuel_perlap=b_fuel_perlap,
+            tire_pars=tire_pars
         )
         push!(df, [strategy, timer])
     end

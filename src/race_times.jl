@@ -13,13 +13,14 @@ function calculate_race_times(;
     p_grid::Int,
     t_loss_pergridpos::Union{Float64,Int},
     t_loss_firstlap::Union{Float64,Int},
-    strategy::Vector{Tuple{Int,String,Int}},
+    strategy::Vector{Tuple{Int,Int,String,Int}},
     m_fuel_init::Union{Float64,Int},
-    b_fuel_perlap::Float64
+    b_fuel_perlap::Float64,
+    tire_pars::Dict{String, Any}
 )
     length(strategy) == 0 && error("Start compound information must be provided")
     length(strategy) == 1 && error("There is no pitstop given in the strategy data. Cars must pit at least once")
-    0 in [length(x) == 3 for x in strategy] && error("Inserted strategy data does not contain [inlap, compound, age] for all pit stops!")
+    0 in [length(x) == 4 for x in strategy] && error("Inserted strategy data does not contain [inlap, outlap, compound, age] for all pit stops!")
 
     #make sure strategy pit stops are in sequential order
     pit_order = [x[1] for x in strategy]
@@ -49,25 +50,23 @@ function calculate_race_times(;
     # loop through all the pit stops
     for idx in 1:length(strategy)
         cur_inlap = strategy[idx][1]
+        cur_outlap = strategy[idx][2]
 
         # get current stint length
-        if idx  < length(strategy)
-            len_cur_stint = strategy[idx + 1][1] - cur_inlap
-        else
-            len_cur_stint = tot_no_laps - cur_inlap
-        end
+        len_cur_stint = strategy[idx][2] - strategy[idx][1]
 
         # get compound until current pitstop
-        comp_cur_stint = strategy[idx][2]
+        comp_cur_stint = strategy[idx][3]
 
         # get tire age at the beginning of this stint
-        age_cur_stint = strategy[idx][3]
+        age_cur_stint = strategy[idx][4]
 
         # add tire losses (degradation considered on basis of the tire age at the start of a lap)
-        t_laps[cur_inlap+1:cur_inlap + len_cur_stint] += calculate_tire_degradation(;
+        t_laps[cur_inlap+1:cur_outlap] += calculate_tire_degradation(;
             tire_age_start=age_cur_stint,
             stint_length=len_cur_stint,
-            compound=comp_cur_stint
+            compound=comp_cur_stint,
+            tire_pars=tire_pars
         )
 
         # consider cold tires in the first lap of a stint (if inlap is not the last lap of the race)
