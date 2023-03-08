@@ -40,7 +40,8 @@ function optimize_strategy(;
     G = -Matrix{Float64}(I, no_stints, no_stints)
     h = fill(-1.0, no_stints)
     
-    A = ones(1, no_stints)  # sum of stints must equal total number of laps
+    # constraint: sum of stints must equal total number of laps
+    A = ones(1, no_stints)
     b = [tot_no_laps]
     
     # create integer design variables
@@ -52,11 +53,10 @@ function optimize_strategy(;
     @constraint(model, G * x .<= h)
     @constraint(model, A * x .== b)
 
-    # More than one lap...
+    # heuristic constraint: More than one lap...
     @constraint(model, x .>= 2)
-    # soft tires don't last very long
+    # heuristic constraint: soft tires don't last very long
     for t in 1:length(tires)
-        print(tires[t])
         if lowercase(tires[t][1]) == "soft"
             @constraint(model, x[t] <= 30)
         end

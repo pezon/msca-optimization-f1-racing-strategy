@@ -5,7 +5,7 @@ p_grid = 5
 # circuit parameters
 tot_no_laps = 70
 # car parameters
-t_base = 80
+t_base = 77.377
 t_lap_sens_mass = 0.03
 t_pitdrive_inlap = 3
 t_pitdrive_outlap = 16
