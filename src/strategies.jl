@@ -9,7 +9,7 @@ function generate_strategies(;
 )
     tire_combinations = []
     for n_pit_stops in min_pit_stops:max_pit_stops
-        candidates = unique(permutations(tires, n_pit_stops))
+        candidates = unique(combinations(tires, n_pit_stops))
         for candidate in candidates
             compounds = [c[1] for c in candidate]
             if length(unique(compounds)) > 1
