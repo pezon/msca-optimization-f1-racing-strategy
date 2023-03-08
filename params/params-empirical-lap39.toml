@@ -27,15 +27,14 @@ tires = [
     ["hard", 2]
 ]
 
-
 [tires.soft]
-k_1_lin = 0.103
-k_0 = 0.391
+k_1_lin = 0.0404
+k_0 = 0.6293
 
 [tires.medium]
-k_1_lin = 0.066
-k_0 = 0.473
+k_1_lin = 0.0752
+k_0 = 0.3592
 
 [tires.hard]
-k_1_lin = 0.028
-k_0 = 1.856
+k_1_lin = 0.0351
+k_0 = 1.8991
