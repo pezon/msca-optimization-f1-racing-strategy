@@ -1,0 +1,43 @@
+[simulation]
+min_pit_stops = 1
+max_pit_stops = 4
+p_grid = 5
+# circuit parameters
+tot_no_laps = 70
+# car parameters
+t_base = 77.377
+t_lap_sens_mass = 0.03
+t_pitdrive_inlap = 3
+t_pitdrive_outlap = 16
+t_pit_tirechange = 3
+cold_tire_pen = 1.0
+pits_aft_finishline = true
+t_loss_firstlap = 10
+t_loss_pergridpos = 2
+m_fuel_init= 110
+b_fuel_perlap = 1.557
+
+tires = [
+    ["soft", 3],
+    ["soft", 3],
+    ["soft", 5],
+    ["medium", 0],
+    ["medium", 0],
+    ["hard", 0],
+    ["hard", 2]
+]
+
+[tires.soft]
+k_2_lin = 0.015162643477906683
+k_1_lin = -0.2616598962491782
+k_0 = 1.925351382015153
+
+[tires.medium]
+k_2_lin = 0.0005240676083454657
+k_1_lin = 0.06202316977486645
+k_0 = 0.4235052139530544
+
+[tires.hard]
+k_2_lin = -0.0011246521745573105
+k_1_lin = 0.06443662189314218
+k_0 = 1.7569913131774038
