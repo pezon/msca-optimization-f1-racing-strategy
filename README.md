@@ -1,10 +1,6 @@
 # Formula 1 Racing Strategy Optimization
 
-Understanding the “Ferrari Disaster” at the 2022 Hungary Grand Prix: A final project submission for the the University of Chicago.
-
-Course: MSCA 32013 – Optimization and Simulation Methods for Analytics
-
-Authors:  Ben Ossyra, Peter Pezon, Yawen Zhang
+Understanding the “Ferrari Disaster” at the 2022 Hungary Grand Prix: A final project submission for MSCA 32013 Optimization and Simulation Methods for Analytics at the University of Chicago by Ben Ossyra, Peter Pezon, and Yawen Zhang.
 
 ## References
 
